@@ -1,7 +1,6 @@
 let computerWins = 0;
 let playerWins = 0;
 
-// this is a test comment for git purposes
 function computerMove(){
     let random = Math.random();
     if(random < .33){
