@@ -60,7 +60,7 @@ function game(){
     for(let i = 0; i < 5; i++){
         console.log(playRound(getPlayerMove(), computerMove()));
     }
-
+    console.log("The verdict? Computer: " + computerWins + " Player:" + playerWins);
 }
 
 game();
