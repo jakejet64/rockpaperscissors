@@ -1,3 +1,6 @@
+let computerWins = 0;
+let playerWins = 0;
+
 function computerMove(){
     let random = Math.random();
     if(random < .33){
@@ -9,21 +12,55 @@ function computerMove(){
     }
 }
 
-let rockDist = 0;
-let paperDist = 0;
-let scissorsDist = 0;
+function getPlayerMove(){
+    let ret = "";
+    while(ret != "rock" && ret != "paper" && ret != "scissors"){
+        ret = prompt("Rock, paper, or... scissors?");
+        ret = ret.toLowerCase();
+    }
+    return(ret);
+}
 
-for(let i = 0; i < 1000000; i++){
-    let thisMove = computerMove();
-    if(thisMove == "rock"){
-        rockDist++;
-    }else if(thisMove == "paper"){
-        paperDist++;
-    }else{
-        scissorsDist++;
+function playRound(playerMove, computerMove){
+    if(playerMove == "rock"){
+        if(computerMove == "rock"){
+            return("Tie! Rock doesn't hurt rock.");
+        }else if(computerMove == "paper"){
+            computerWins++;
+            return("Loss! Computer's paper covers your rock");
+        }else{ //computerMove == "scissors"
+            playerWins++;
+            return("Win! Your rock beats the computers scissors.");
+        }
+    }else if(playerMove == "paper"){
+        if(computerMove == "rock"){
+            playerWins++;
+            return("Win! Your paper covers the computers rock.");
+        }else if(computerMove == "paper"){
+            return("Tie! Paper doesn't do anything to paper.");
+        }else{ //computerMove == "scissors"
+            computerWins++;
+            return("Loss! The computers scissors cut your paper.");
+        }
+    }else { //playerMove == "scissors"
+        if(computerMove == "rock"){
+            computerWins++;
+            return("Loss! The computers rock beats your scissors.");
+        }else if(computerMove == "paper"){
+            playerWins++;
+            return("Win! Your Scissors cut the computers paper.");
+        }else{ //computerMove == "scissors"
+            return("Tie! Your scissors do nothing to the computers.")
+        }
     }
 }
 
-console.log("Rock distribution:" + (rockDist/10000) + "%")
-console.log("Paper distribution:" + (paperDist/10000) + "%")
-console.log("Scissors distribution:" + (scissorsDist/10000) + "%")
+function game(){
+    // this is the loop that plays 5 rounds
+    for(let i = 0; i < 5; i++){
+        console.log(playRound(getPlayerMove(), computerMove()));
+    }
+
+}
+
+game();
