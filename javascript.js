@@ -1,6 +1,8 @@
 let computerWins = 0;
 let playerWins = 0;
 
+const buttons = document.querySelectorAll('button');
+
 function computerMove(){
     let random = Math.random();
     if(random < .33){
@@ -13,12 +15,7 @@ function computerMove(){
 }
 
 function getPlayerMove(){
-    let ret = "";
-    while(ret != "rock" && ret != "paper" && ret != "scissors"){
-        ret = prompt("Rock, paper, or... scissors?");
-        ret = ret.toLowerCase();
-    }
-    return(ret);
+    return "rock";
 }
 
 function playRound(playerMove, computerMove){
@@ -55,12 +52,9 @@ function playRound(playerMove, computerMove){
     }
 }
 
-function game(){
-    // this is the loop that plays 5 rounds
-    for(let i = 0; i < 5; i++){
-        console.log(playRound(getPlayerMove(), computerMove()));
-    }
+function handleButton() {
+    console.log(playRound(this.className, computerMove()));
     console.log("The verdict? Computer: " + computerWins + " Player:" + playerWins);
 }
 
-game();
+buttons.forEach(button => button.addEventListener('click', handleButton));
