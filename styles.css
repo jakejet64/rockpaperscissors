@@ -1,3 +1,19 @@
+body {
+    background-color: rgb(192, 206, 210);
+}
+
+.textBox {
+    border: 8px solid black;
+    margin-bottom: 16px;
+    height:350px;
+    padding: 10px;
+}
+
+.textBoxText {
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
 .choice-box {
     display: flex;
     justify-content: space-evenly;
